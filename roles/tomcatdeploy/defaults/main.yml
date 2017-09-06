@@ -1,0 +1,5 @@
+---
+# defaults file for tomcatdeploy
+warName: sample.war
+warRemotePath: /home/santosh/Downloads/
+destinationpath: /var/lib/tomcat8/webapps/

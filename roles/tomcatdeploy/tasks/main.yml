@@ -1,0 +1,3 @@
+---
+# tasks file for tomcatdeploy
+- include: warDeploy.yml

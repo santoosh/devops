@@ -1,0 +1,17 @@
+---
+#- name: Download WAR to server
+#    command: wget http://example.com/file.war -O {{ warRemotePath }}/{{ warName }}
+  
+  #- name: Unzip WAR file
+   # unarchive: src={{ warRemotePath }}/{{ warName }} dest=/var/lib/tomcat7/webapps/ROOT/ copy=no mode=0755 owner=tomcat7 group=tomcat7
+    #notify:
+     #   - restart tomcat
+   
+  #- name: Delete remote war file
+   # file: path={{ warRemotePath }}/{{ warName }} state=absent
+- name: copying the local file  to remote system
+  copy: src={{ warRemotePath }}/{{ warName }} dest={{ destinationpath }}
+  notify:
+      - restart tomcat
+
+  
