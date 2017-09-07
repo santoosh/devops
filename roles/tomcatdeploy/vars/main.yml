@@ -1,6 +1,6 @@
 ---
 # vars file for tomcatdeploy
 warName: sample.war
-warRemotePath: /home/santosh/Downloads/
+warRemotePath: /root/roles/tomcatdeploy/
 destinationpath: /var/lib/tomcat8/webapps/
 
