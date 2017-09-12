@@ -9,8 +9,12 @@
    
   #- name: Delete remote war file
    # file: path={{ warRemotePath }}/{{ warName }} state=absent
-- name: copying the local file  to remote system
-  copy: src={{ warRemotePath }}/{{ warName }} dest={{ destinationpath }}
+#- name: copying the local file  to remote system
+#  copy: src={{ warRemotePath }}/{{ warName }} dest={{ destinationpath }}
+#  notify:
+#      - restart tomcat
+- name: updating war file
+  command: gsutil cp gs://omni-sample/sample.war   {{ destinationpath }} 
   notify:
       - restart tomcat
 

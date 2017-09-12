@@ -1,0 +1,36 @@
+---
+- name: updating CLOUD_SDK_REPO
+  template: src=cloud-sdk.j2 dest='/etc/apt/sources.list.d/cloud-sdk.list'  
+- name: Get the cloud-sdk singing key
+  get_url: url='https://packages.cloud.google.com/apt/doc/apt-key.gpg' dest='/var/cloudsdk_signing.key'
+  register: result 
+- name: adding key into file
+  command: "apt-key add '/var/cloudsdk_signing.key'" 
+  when: result.changed
+- name: apt-get updateing
+  apt: update_cache=yes
+  become_method: sudo
+  become: yes
+- name: install cloud-sdk packages
+  apt: pkg={{ item }} state=installed
+  with_items:
+      - google-cloud-sdk
+      - google-cloud-sdk-app-engine-java
+  become_method: sudo
+  become: yes
+#- name: updating the credentials 
+#  template: src=credentials.j2  dest='/home/ubuntu/.boto' owner=ubuntu group=ubuntu mode=600
+- name: updating the credentials 
+  template: src=credentials.j2  dest='/root/.boto' owner=root group=root mode=600
+- name: updating the credential 
+  template: src=project.j2  dest='/root/.config/gcloud/configurations/config_default' 
+- name: create bucekts into gcs  
+  command: gsutil mb gs://omni-sample/
+#  register: result
+- name: copy war file from 
+  template: src=sample.war  dest='/tmp'
+- name: copy war file to gcs  
+  command: gsutil cp /tmp/sample.war gs://omni-sample/
+  register: result
+#- name: download war file into local machine
+#  command: gsutil cp gs://omni-sample/sample.war /opt 
