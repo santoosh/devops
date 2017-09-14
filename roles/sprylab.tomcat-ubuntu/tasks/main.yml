@@ -12,15 +12,15 @@
     url: "{{ item }}"
     dest: "{{ tomcat_ubuntu_download_dir }}"
   with_items:
-    - "{{ tomcat_ubuntu_repository }}/pool/main/t/tomcat8/tomcat8_{{ tomcat_ubuntu_version }}.deb"
-    - "{{ tomcat_ubuntu_repository }}/pool/main/t/tomcat8/tomcat8-common_{{ tomcat_ubuntu_version }}.deb"
-    - "{{ tomcat_ubuntu_repository }}/pool/main/t/tomcat8/libtomcat8-java_{{ tomcat_ubuntu_version }}.deb"
-    - "{{ tomcat_ubuntu_repository }}/pool/main/e/ecj/libecj-java_{{ tomcat_ubuntu_libecj_version }}.deb"
-    - "{{ tomcat_ubuntu_repository }}/pool/main/o/openssl/libssl1.0.0_{{ tomcat_ubuntu_libssl_version }}.deb"
+    - "{{ tomcat_ubuntu_repository }}/pool/universe/t/tomcat8/tomcat8_{{ tomcat_ubuntu_version }}.deb"
+    - "{{ tomcat_ubuntu_repository }}/pool/universe/t/tomcat8/tomcat8-common_{{ tomcat_ubuntu_version }}.deb"
+    - "{{ tomcat_ubuntu_repository }}/pool/universe/t/tomcat8/libtomcat8-java_{{ tomcat_ubuntu_version }}.deb"
+    - "{{ tomcat_ubuntu_repository }}/pool/universe/e/ecj/libecj-java_{{ tomcat_ubuntu_libecj_version }}.deb"
+    - "{{ tomcat_ubuntu_repository }}/pool/universe/o/openssl/libssl1.0.0_{{ tomcat_ubuntu_libssl_version }}.deb"
 
 - name: Download Tomcat Admin from Ubuntu Package archive
   get_url:
-    url: "{{ tomcat_ubuntu_repository }}/pool/main/t/tomcat8/tomcat8-admin_{{ tomcat_ubuntu_version }}.deb"
+    url: "{{ tomcat_ubuntu_repository }}/pool/universe/t/tomcat8/tomcat8-admin_{{ tomcat_ubuntu_version }}.deb"
     dest: "{{ tomcat_ubuntu_download_dir }}"
   when: tomcat_ubuntu_admin_install|bool
 
@@ -36,7 +36,7 @@
     dest: "{{ tomcat_ubuntu_download_dir }}"
   with_items:
     - "{{ tomcat_ubuntu_repository }}/pool/universe/t/tomcat-native/libtcnative-1_{{ tomcat_ubuntu_native_version }}.deb"
-    - "{{ tomcat_ubuntu_repository }}/pool/main/a/apr/libapr1_{{ tomcat_ubuntu_apache_native_version }}.deb"
+    - "{{ tomcat_ubuntu_repository }}/pool/universe/a/apr/libapr1_{{ tomcat_ubuntu_apache_native_version }}.deb"
   when: tomcat_ubuntu_native_install|bool
 
 - name: Install Tomcat packages
