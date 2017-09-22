@@ -2,5 +2,5 @@
 # vars file for tomcatdeploy
 warName: sample.war
 warRemotePath: /root/roles/tomcatdeploy/
-destinationpath: /var/lib/tomcat8/webapps/
+destinationpath: /usr/share/tomcat/webapps/
 

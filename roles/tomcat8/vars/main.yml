@@ -1,0 +1,25 @@
+---
+#ansible_ssh_user: ubuntu
+#tomcat_base: http://archive.apache.org/dist/tomcat
+#tomcat_url: tomcat-8/v8.5.11/bin
+#tomcat_version: apache-tomcat-8.5.11.tar.gz
+#tomcat_folder: apache-tomcat-8.5.11
+
+tomcatport: 8080
+http_port: 8080
+https_port: 8080
+admin_username: tomcat
+admin_password: admin
+#tomcat_admin_username: admin_tomcat
+#tomcat_admin_password: xWduxSJdR
+tomcat_host: 0.0.0.0
+
+# Ethernet interface on which the load balancer should listen
+# Defaults to the first interface. Change this to:
+#
+#  iface: eth1
+#
+# ...to override.
+#
+iface: '{{ ansible_default_ipv4.interface }}'
+
