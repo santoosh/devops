@@ -1,0 +1,17 @@
+- name: Check list of running Node.js apps.
+  command: forever list
+  register: forever_list
+  changed_when: false
+
+- name: Start example Node.js app.
+  command: "forever start /home/ubuntu/sms-ui/server.js"
+  when: "forever_list.stdout.find(/home/ubuntu + '/sms-ui/server.js') == 0"
+
+  - name: Get app process id
+  shell: "ps aux | grep server.js | grep -v grep | awk '{print $2}'"
+  register: process_id
+
+- name: Stop app process
+  shell: kill -9 {{ item }}
+  with_items: process_id.stdout_lines
+  ignore_errors: True  # Ignore error when no process running  
