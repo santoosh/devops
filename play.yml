@@ -1,0 +1,7 @@
+- hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+     - { role: apache2, when: ansible_local.role.metadata.role  == "apache2"}
+     - { role: tomcat7, when: ansible_local.role.metadata.role  == "tomcat7"}
+     - { role: tomcat8, when: ansible_local.role.metadata.role  == "tomcat8"}
